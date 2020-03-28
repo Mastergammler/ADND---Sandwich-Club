@@ -19,7 +19,8 @@ import org.json.JSONException;
 
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity
+{
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
@@ -28,7 +29,8 @@ public class DetailActivity extends AppCompatActivity {
     private static final int TV_CONTENT_CHILD_INDEX = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
@@ -36,12 +38,14 @@ public class DetailActivity extends AppCompatActivity {
         intiTvLabels();
 
         Intent intent = getIntent();
-        if (intent == null) {
+        if (intent == null)
+        {
             closeOnError();
         }
 
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
-        if (position == DEFAULT_POSITION) {
+        if (position == DEFAULT_POSITION)
+        {
             // EXTRA_POSITION not found in intent
             closeOnError();
             return;
@@ -69,12 +73,14 @@ public class DetailActivity extends AppCompatActivity {
         setTitle(sandwich.getMainName());
     }
 
-    private void closeOnError() {
+    private void closeOnError()
+    {
         finish();
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI(Sandwich sandwich) {
+    private void populateUI(Sandwich sandwich)
+    {
         setTvContent(R.id.tc_origin,sandwich.getPlaceOfOrigin(),false);
         setTvContent(R.id.tc_known_as,formatList(sandwich.getAlsoKnownAs()),false);
         setTvContent(R.id.tc_ingredients,formatList(sandwich.getIngredients()),false);

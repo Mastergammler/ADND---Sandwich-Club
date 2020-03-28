@@ -8,7 +8,8 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class JsonUtils {
+public class JsonUtils
+{
 
     //---------------
     //  CONSTANTS

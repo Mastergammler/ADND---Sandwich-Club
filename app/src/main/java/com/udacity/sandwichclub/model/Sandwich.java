@@ -2,8 +2,8 @@ package com.udacity.sandwichclub.model;
 
 import java.util.List;
 
-public class Sandwich {
-
+public class Sandwich
+{
     private String mainName;
     private List<String> alsoKnownAs = null;
     private String placeOfOrigin;
@@ -14,10 +14,10 @@ public class Sandwich {
     /**
      * No args constructor for use in serialization
      */
-    public Sandwich() {
-    }
+    public Sandwich() { }
 
-    public Sandwich(String mainName, List<String> alsoKnownAs, String placeOfOrigin, String description, String image, List<String> ingredients) {
+    public Sandwich(String mainName, List<String> alsoKnownAs, String placeOfOrigin, String description, String image, List<String> ingredients)
+    {
         this.mainName = mainName;
         this.alsoKnownAs = alsoKnownAs;
         this.placeOfOrigin = placeOfOrigin;
