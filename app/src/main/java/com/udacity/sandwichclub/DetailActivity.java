@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
     {
         int childIndex = label ? TV_LABEL_CHILD_INDEX : TV_CONTENT_CHILD_INDEX;
 
-        FrameLayout parent = findViewById(parentId);
+        ViewGroup parent = findViewById(parentId);
         TextView contentView = (TextView) parent.getChildAt(childIndex);
         contentView.setText(text);
 
