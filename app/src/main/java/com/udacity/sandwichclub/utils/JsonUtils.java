@@ -30,29 +30,36 @@ public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) throws JSONException
     {
-        JSONObject sandwichContainer = new JSONObject(json);
+        JSONObject jsonMain = new JSONObject(json);
+        JSONObject nameObj = jsonMain.getJSONObject(NAME_OBJ);
 
-        JSONObject nameObj = sandwichContainer.getJSONObject(NAME_OBJ);
-        String mainName = nameObj.getString(NAME_MAIN_ATTR);
+        String mainName = getJsonValue(nameObj,NAME_MAIN_ATTR);
+        String[] knownNames = getJsonArrayValues(nameObj,NAME_KNOWN_AS_ARRAY);
 
-        JSONArray knownAs = nameObj.getJSONArray(NAME_KNOWN_AS_ARRAY);
-        String[] knownNames = new String[knownAs.length()];
-        for(int i=0; i < knownAs.length(); i++)
+        String origin = getJsonValue(jsonMain,ORIGIN_ATTR);
+        String desc = getJsonValue(jsonMain,DESCRIPTION_ATTR);
+        String imageUrl = getJsonValue(jsonMain,IMAGE_ATTR);
+        String[] ingredients = getJsonArrayValues(jsonMain,INGREDIENTS_ARRAY);
+
+       return new Sandwich(mainName, Arrays.asList(knownNames), origin, desc, imageUrl, Arrays.asList(ingredients));
+    }
+
+    private static String getJsonValue(JSONObject jsonObj,String attrName) throws JSONException
+    {
+        return jsonObj.getString(attrName);
+    }
+
+    private static String[] getJsonArrayValues(JSONObject jsonObject, String arrayName) throws JSONException
+    {
+        JSONArray jsonArray = jsonObject.getJSONArray(arrayName);
+        String[] values = new String[jsonArray.length()];
+
+        for(int i = 0; i < jsonArray.length(); i++)
         {
-            knownNames[i] = knownAs.getString(i);
+            values[i] = jsonArray.getString(i);
         }
 
-        String origin = sandwichContainer.getString(ORIGIN_ATTR);
-        String descr = sandwichContainer.getString(DESCRIPTION_ATTR);
-        String imageUrl = sandwichContainer.getString(IMAGE_ATTR);
-        JSONArray ingredients = sandwichContainer.getJSONArray(INGREDIENTS_ARRAY);
-        String[] ingredientsArray = new String[ingredients.length()];
-        for(int i =0; i < ingredients.length(); i++)
-        {
-            ingredientsArray[i] = ingredients.getString(i);
-        }
-
-       return new Sandwich(mainName, Arrays.asList(knownNames), origin, descr, imageUrl, Arrays.asList(ingredientsArray));
+        return values;
     }
 
 
