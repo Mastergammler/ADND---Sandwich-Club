@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,6 +87,8 @@ public class DetailActivity extends AppCompatActivity {
         FrameLayout parent = findViewById(parentId);
         TextView contentView = (TextView) parent.getChildAt(childIndex);
         contentView.setText(text);
+
+        if(text.isEmpty()) parent.setVisibility(View.GONE);
     }
 
     private String formatList(List<String> list)
