@@ -4,14 +4,13 @@
     android:orientation="horizontal"
     android:layout_width="match_parent" android:layout_height="wrap_content">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="Default Description"/>
     <TextView
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="103dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Default Content" />
-
 </FrameLayout>
