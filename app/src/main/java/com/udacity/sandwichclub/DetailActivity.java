@@ -15,6 +15,8 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import org.json.JSONException;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -72,8 +74,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
         setTvContent(R.id.tc_origin,sandwich.getPlaceOfOrigin(),false);
-        setTvContent(R.id.tc_known_as,sandwich.getAlsoKnownAs().toString(),false);
-        setTvContent(R.id.tc_ingredients,sandwich.getIngredients().toString(),false);
+        setTvContent(R.id.tc_known_as,formatList(sandwich.getAlsoKnownAs()),false);
+        setTvContent(R.id.tc_ingredients,formatList(sandwich.getIngredients()),false);
         setTvContent(R.id.tc_description,sandwich.getDescription(),false);
     }
 
@@ -84,6 +86,22 @@ public class DetailActivity extends AppCompatActivity {
         FrameLayout parent = findViewById(parentId);
         TextView contentView = (TextView) parent.getChildAt(childIndex);
         contentView.setText(text);
+    }
+
+    private String formatList(List<String> list)
+    {
+        String formatted = "";
+
+        if(list.size() > 0)
+        {
+            for(String s : list)
+            {
+                formatted += s;
+                formatted += "\n";
+            }
+            formatted = formatted.substring(0,formatted.length()-2);
+        }
+        return formatted;
     }
 
     private void intiTvLabels()
